@@ -5,6 +5,7 @@ using RandomConnector.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace RandomConnector.Controllers
@@ -76,6 +77,26 @@ namespace RandomConnector.Controllers
                     MoveNext = BatchCount < allItems.Count,
                 };
             }
+        }
+
+        [HttpGet("getSchema")]
+        public List<SchemaItem> GetSchema()
+        {
+            var schemaItems = new List<SchemaItem>();
+            schemaItems.Add(new SchemaItem()
+            {
+                Id = "0",
+                Name = "firstname",
+                Type = "string",
+            });
+            schemaItems.Add(new SchemaItem()
+            {
+                Id = "1",
+                Name = "lastname",
+                Type = "string",
+            });
+
+            return schemaItems;
         }
 
         private static List<SearchableItem> GetAllItems()
